@@ -14,6 +14,21 @@ export const SignInSchema = z.object({
   })
 });
 
+export const createCompanySchema = z.object({
+  name: z
+    .string({
+      errorMap: (issue, ctx) => customErrorMap('Digite um nome')
+    })
+    .min(1),
+  email: z
+    .string({
+      errorMap: (issue, ctx) => customErrorMap('Digite um email')
+    })
+    .email({
+      message: 'Digite um email válido.'
+    })
+});
+
 export const createCollaboratorSchema = z.object({
   name: z
     .string({

@@ -3,4 +3,5 @@ export interface LinkComponentProps {
   label?: string;
   children?: React.ReactNode;
   className?: string;
+  nestedRoute?: boolean;
 }

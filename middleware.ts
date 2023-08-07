@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAuth } from './lib/auth';
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get('@control-token');

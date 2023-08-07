@@ -1,20 +1,10 @@
 'use client';
 import LinkComponent from '@/components/LinkComponent';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Users, Building, Pencil } from 'lucide-react';
+import { Building, Pencil } from 'lucide-react';
 
 const ManagementOptions = () => {
   return (
     <div className="w-full h-full flex items-end">
-      <div className="lg:w-[15%] 2xl:w-[10%] lg:h-[80%]  flex flex-col justify-end gap-2">
-        <p className="font-medium">Colaboradores</p>
-        <LinkComponent
-          href="/management"
-          className="h-[50%] w-[50%] bg-slate-200 justify-center items-center"
-        >
-          <Users className="w-8 h-8" />
-        </LinkComponent>
-      </div>
       <div className="lg:w-[15%] 2xl:w-[10%] lg:h-[80%] flex flex-col justify-end gap-2">
         <p className="font-medium">Empresa</p>
         <LinkComponent

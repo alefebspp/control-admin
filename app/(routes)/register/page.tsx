@@ -6,26 +6,18 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion';
 import { PiClockClockwise, PiClockCountdownFill } from 'react-icons/pi';
-import { AuthForm } from '@/components/AuthForm';
+import { RegisterForm } from '@/components/RegisterForm';
 
-export default function Login() {
+export default function Register() {
   return (
     <div className="w-full h-[100vh] flex items-center bg-blue-300 p-10 ">
       <div className="w-full lg:h-[80%] xl:h-full bg-white items-center flex p-5 rounded-br-[60px]">
         <div className="xl:w-[30%] lg:w-[40%] h-[80%]  p-14 bg-white flex flex-col justify-between items-start">
-          <div className="w-full gap-2 flex items-center">
-            <PiClockClockwise className="h-8 w-8" />
-            <h1 className="font-bold text-2xl">Control</h1>
-          </div>
-          <div className="w-full h-[10%] flex flex-col justify-between">
-            <h2 className="font-bold lg:text-2xl xl:text-4xl">Entrar</h2>
-            <h3 className="lg:text-sm xl:text-lg">Faça login para entrar</h3>
-          </div>
-          <AuthForm />
+          <RegisterForm />
           <div className="w-full flex gap-[2px]">
-            <p>Não tem uma conta?</p>
-            <Link className="font-bold underline" href="/register">
-              Criar
+            <p>Já tem uma conta?</p>
+            <Link className="font-bold underline" href="/login">
+              Entrar
             </Link>
           </div>
         </div>

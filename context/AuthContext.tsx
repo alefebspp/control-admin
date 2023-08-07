@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
       });
 
       const data = await response.json();
-
+      console.log('LOGIN::', data);
       if (data.statusCode == 404) {
         toast({
           title: data.message,

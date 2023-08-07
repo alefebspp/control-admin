@@ -10,6 +10,11 @@ export interface Collaborator {
   surname: string;
 }
 
+export interface RegistryCollaborator
+  extends Omit<Collaborator, 'id' | 'avatar'> {
+  password: string;
+}
+
 export interface CreateCollaboratorParams {
   name: string;
   surname: string;
@@ -19,6 +24,8 @@ export interface CreateCollaboratorParams {
   interval_start: string;
   interval_end: string;
   shift_end: string;
+  company_id?: string;
+  admin?: boolean;
 }
 
 export interface UpdateCollaboratorParams {

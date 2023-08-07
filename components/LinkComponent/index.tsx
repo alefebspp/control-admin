@@ -11,7 +11,7 @@ const LinkComponent: React.FC<LinkComponentProps> = ({
 }) => {
   const pathname = usePathname();
 
-  const isActive = pathname == href;
+  const isActive = pathname.includes(href);
 
   return (
     <Link
