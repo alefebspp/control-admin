@@ -1,5 +1,5 @@
 import { api } from '../api';
-import { Company } from './interface';
+import { Company, UpdateCompanyParams } from './interface';
 
 const createCompany = async (params: Company) => {
   try {
@@ -11,9 +11,12 @@ const createCompany = async (params: Company) => {
   }
 };
 
-const findCompany = async (company_id?: string) => {
+const updateCompany = async ({ body, company_id }: UpdateCompanyParams) => {
   try {
-    const { data } = await api.get<Company>(`company/find/${company_id}`);
+    const { data } = await api.patch<Company>(
+      `company/update/${company_id}`,
+      body
+    );
 
     return data;
   } catch (error) {
@@ -21,4 +24,16 @@ const findCompany = async (company_id?: string) => {
   }
 };
 
-export { createCompany };
+const findCompany = async () => {
+  try {
+    const response = await fetch(`http://localhost:3002/api/company/find`);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { createCompany, findCompany, updateCompany };

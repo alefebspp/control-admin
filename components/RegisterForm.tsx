@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import { createCollaboratorSchema, createCompanySchema } from '@/lib/schemas';
+import { createCollaboratorSchema, companySchema } from '@/lib/schemas';
 import { AppError } from '@/lib/AppError';
 import { formatTimeInput } from '@/utils/masks';
 import { createCollaborator } from '@/services/collaborator/collaborator.service';
@@ -51,11 +51,11 @@ const CompanyInfo = ({ collaborator }: CompanyInfoProps) => {
   const { toast } = useToast();
   const { signIn } = useAuthContext();
 
-  const form = useForm<z.infer<typeof createCompanySchema>>({
-    resolver: zodResolver(createCompanySchema)
+  const form = useForm<z.infer<typeof companySchema>>({
+    resolver: zodResolver(companySchema)
   });
 
-  async function handleRegistry(data: z.infer<typeof createCompanySchema>) {
+  async function handleRegistry(data: z.infer<typeof companySchema>) {
     try {
       setIsLoading(true);
       const { id } = await createCompany(data);
@@ -133,7 +133,8 @@ const CollaboratorInfo = ({ setCollaborator }: CollaboratorInfoProps) => {
       interval_start: '00:00',
       interval_end: '00:00',
       shift_start: '00:00',
-      shift_end: '00:00'
+      shift_end: '00:00',
+      manager: false
     }
   });
 

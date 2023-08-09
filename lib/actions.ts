@@ -5,16 +5,16 @@ export async function getUser(token: string | undefined) {
     }
   });
 
-  const { user_id } = await response.json();
+  const data = await response.json();
 
-  return user_id;
+  return data;
 }
 
 export async function getCollaborator(token?: string) {
-  const id = await getUser(token);
+  const { user_id } = await getUser(token);
 
   const response = await fetch(
-    `http://localhost:3000/collaborator/find/${id}`,
+    `http://localhost:3000/collaborator/find/${user_id}`,
     {
       headers: {
         Authorization: `Bearer ${token}`

@@ -10,6 +10,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -22,8 +23,12 @@ import { createCollaboratorSchema } from '@/lib/schemas';
 import { AppError } from '@/lib/AppError';
 import { formatTimeInput } from '@/utils/masks';
 import { useCollaboratorService } from '@/hooks/useCollaboratorService';
+import { useAuthContext } from '@/context/AuthContext';
+import { Checkbox } from './ui/checkbox';
 
 const CreateCollaboratorForm = () => {
+  const { user } = useAuthContext();
+
   const { useCreateCollaboratorMutation } = useCollaboratorService();
   const { mutateAsync: createCollaborator, isLoading } =
     useCreateCollaboratorMutation();
@@ -31,7 +36,10 @@ const CreateCollaboratorForm = () => {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof createCollaboratorSchema>>({
-    resolver: zodResolver(createCollaboratorSchema)
+    resolver: zodResolver(createCollaboratorSchema),
+    defaultValues: {
+      manager: false
+    }
   });
 
   const shiftStartValue = form.watch('shift_start');
@@ -45,7 +53,7 @@ const CreateCollaboratorForm = () => {
     data: z.infer<typeof createCollaboratorSchema>
   ) {
     try {
-      await createCollaborator(data);
+      await createCollaborator({ company_id: user?.user_company, ...data });
       toast({
         title: 'Colaborador criado com sucesso!',
         variant: 'success'
@@ -224,6 +232,21 @@ const CreateCollaboratorForm = () => {
                   />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="manager"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel>Marque para o colaborador ser um gestor</FormLabel>
               </FormItem>
             )}
           />

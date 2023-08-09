@@ -14,7 +14,7 @@ export const SignInSchema = z.object({
   })
 });
 
-export const createCompanySchema = z.object({
+export const companySchema = z.object({
   name: z
     .string({
       errorMap: (issue, ctx) => customErrorMap('Digite um nome')
@@ -71,7 +71,8 @@ export const createCollaboratorSchema = z.object({
     .string({
       errorMap: (issue, ctx) => customErrorMap('Digite um horário de saída')
     })
-    .min(4)
+    .min(4),
+  manager: z.boolean()
 });
 
 export const updateCollaboratorSchema = z.object({
@@ -111,5 +112,6 @@ export const updateCollaboratorSchema = z.object({
     .string({
       errorMap: (issue, ctx) => customErrorMap('Digite um horário de saída')
     })
-    .min(4)
+    .min(4),
+  manager: z.boolean()
 });

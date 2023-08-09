@@ -21,6 +21,8 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   const router = useRouter();
   const { toast } = useToast();
 
+  console.log('USER:', user);
+
   const setUserAndApiToken = (
     user: User | undefined,
     token: string | undefined
@@ -40,7 +42,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
       });
 
       const data = await response.json();
-      console.log('LOGIN::', data);
+
       if (data.statusCode == 404) {
         toast({
           title: data.message,

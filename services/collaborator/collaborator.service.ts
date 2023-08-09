@@ -28,9 +28,11 @@ const updateCollaborator = async (params: UpdateCollaboratorParams) => {
   }
 };
 
-const listCollaborators = async () => {
+const listCollaborators = async (): Promise<Collaborator[]> => {
   try {
-    const { data } = await api.get<Collaborator[]>('collaborator/list');
+    const response = await fetch(`http://localhost:3002/api/collaborator/list`);
+
+    const data = await response.json();
 
     return data;
   } catch (error) {

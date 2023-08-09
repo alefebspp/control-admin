@@ -23,6 +23,7 @@ import { AppError } from '@/lib/AppError';
 import { formatTimeInput } from '@/utils/masks';
 import { useCollaboratorService } from '@/hooks/useCollaboratorService';
 import { Collaborator } from '@/services/collaborator/interface';
+import { Checkbox } from './ui/checkbox';
 
 interface UpdateCollaboratorFormProps {
   collaborator: Collaborator;
@@ -46,7 +47,8 @@ const UpdateCollaboratorForm = ({
       shift_start: collaborator.shift_start,
       shift_end: collaborator.shift_end,
       interval_start: collaborator.interval_start,
-      interval_end: collaborator.interval_end
+      interval_end: collaborator.interval_end,
+      manager: collaborator.manager
     }
   });
 
@@ -193,6 +195,21 @@ const UpdateCollaboratorForm = ({
                   <Input className="bg-gray-300 shadow-md" {...field} />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="manager"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel>Gestor</FormLabel>
               </FormItem>
             )}
           />

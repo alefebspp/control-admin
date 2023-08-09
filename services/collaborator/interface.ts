@@ -8,6 +8,8 @@ export interface Collaborator {
   shift_end: string;
   shift_start: string;
   surname: string;
+  manager?: boolean;
+  company_id?: string;
 }
 
 export interface RegistryCollaborator
