@@ -8,25 +8,29 @@ import { Collaborator } from '@/components/Collaborator';
 
 import { useCollaboratorService } from '@/hooks/useCollaboratorService';
 import PageSkeleton from './skeleton';
+import { useAuthContext } from '@/context/AuthContext';
 
 const Management = () => {
+  const { user } = useAuthContext();
   const { useListCollaboratorsQuery } = useCollaboratorService();
-  const { data: collaborators, isLoading } = useListCollaboratorsQuery();
+  const { data: collaborators, isLoading } = useListCollaboratorsQuery(
+    user?.user_company
+  );
 
   if (isLoading) {
     return <PageSkeleton />;
   }
 
   return (
-    <div className="w-full h-full flex justify-between items-center">
-      <div className="w-[48%] h-full flex flex-col gap-4 p-2 bg-white rounded-md">
+    <div className="w-full h-full flex gap-4 items-center">
+      <div className="w-[50%] h-full flex flex-col gap-4 p-2 bg-white rounded-md border border-slate-500">
         <div className="w-full flex items-end gap-2">
           <UserPlus className="w-10 h-10" />
           <p className="text-lg font-medium">Adicionar colaborador</p>
         </div>
         <CreateCollaboratorForm />
       </div>
-      <div className="w-[48%] h-full flex flex-col gap-4 p-2 bg-white rounded-md">
+      <div className="w-[50%] h-full flex flex-col gap-4 p-2 bg-white rounded-md border border-slate-500">
         <div className="w-full flex items-end gap-2">
           <Users className="w-10 h-10" />
           <p className="text-lg font-medium">Colaboradores</p>

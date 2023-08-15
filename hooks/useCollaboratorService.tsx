@@ -37,9 +37,9 @@ export const useCollaboratorService = () => {
     });
   };
 
-  const useListCollaboratorsQuery = () => {
+  const useListCollaboratorsQuery = (company_id?: string) => {
     return useQuery({
-      queryFn: listCollaborators,
+      queryFn: () => listCollaborators(company_id),
       queryKey: ['collaborators']
     });
   };

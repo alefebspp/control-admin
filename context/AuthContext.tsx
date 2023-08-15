@@ -1,5 +1,7 @@
 'use client';
 import { createContext, useState, useContext, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
 import {
   AuthContextInitialValue,
@@ -10,7 +12,7 @@ import {
 } from './interface';
 import { api } from '@/services/api';
 import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
+import { AppSkeleton } from '@/layout/skeletons/app';
 
 export const AuthContext = createContext<AuthContextInitialValue>(
   {} as AuthContextInitialValue
@@ -21,7 +23,8 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   const router = useRouter();
   const { toast } = useToast();
 
-  console.log('USER:', user);
+  const pathname = usePathname();
+  const atAuthenticatedRoutes = pathname != '/login' && pathname != '/register';
 
   const setUserAndApiToken = (
     user: User | undefined,
@@ -85,6 +88,10 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
       persistLogin();
     }
   }, []);
+
+  if (atAuthenticatedRoutes && !user) {
+    return <AppSkeleton />;
+  }
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut }}>

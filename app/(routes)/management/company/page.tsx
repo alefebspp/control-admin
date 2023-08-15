@@ -19,6 +19,7 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { useCompanyService } from '@/hooks/useCompanyService';
+import { useAuthContext } from '@/context/AuthContext';
 import { companySchema } from '@/lib/schemas';
 import CompanySkeleton from './skeleton';
 import { useToast } from '@/components/ui/use-toast';
@@ -26,10 +27,11 @@ import { AppError } from '@/lib/AppError';
 
 const Company = () => {
   const { toast } = useToast();
+  const { user } = useAuthContext();
 
   const { useFindCompanyQuery, useUpdateCompanyMutation } = useCompanyService();
 
-  const { data: company, isLoading } = useFindCompanyQuery();
+  const { data: company, isLoading } = useFindCompanyQuery(user?.user_company);
   const { mutateAsync: updateCompany, isLoading: updatingCompany } =
     useUpdateCompanyMutation();
 

@@ -24,11 +24,9 @@ const updateCompany = async ({ body, company_id }: UpdateCompanyParams) => {
   }
 };
 
-const findCompany = async () => {
+const findCompany = async (company_id: string | undefined) => {
   try {
-    const response = await fetch(`http://localhost:3002/api/company/find`);
-
-    const data = await response.json();
+    const { data } = await api.get(`company/find/${company_id}`);
 
     return data;
   } catch (error) {

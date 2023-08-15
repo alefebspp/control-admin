@@ -23,7 +23,7 @@ const LinkComponent: React.FC<LinkComponentProps> = ({
       href={href}
     >
       {children}
-      <p>{label}</p>
+      <p className="lg:text-xs xl:text-sm">{label}</p>
     </Link>
   );
 };

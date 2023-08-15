@@ -4,9 +4,9 @@ import { findCompany, updateCompany } from '@/services/company/company.service';
 export const useCompanyService = () => {
   const queryClient = useQueryClient();
 
-  const useFindCompanyQuery = () => {
+  const useFindCompanyQuery = (company_id?: string) => {
     return useQuery({
-      queryFn: findCompany,
+      queryFn: () => findCompany(company_id),
       queryKey: ['company']
     });
   };
