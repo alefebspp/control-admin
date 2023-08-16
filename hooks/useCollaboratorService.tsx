@@ -4,7 +4,8 @@ import {
   listCollaborators,
   findCollaborator,
   deleteCollaborator,
-  updateCollaborator
+  updateCollaborator,
+  changeCollaboratorAvatar
 } from '@/services/collaborator/collaborator.service';
 
 export const useCollaboratorService = () => {
@@ -51,11 +52,21 @@ export const useCollaboratorService = () => {
     });
   };
 
+  const useChangeAvatarMutation = () => {
+    return useMutation({
+      mutationFn: changeCollaboratorAvatar,
+      onSuccess: () => {
+        queryClient?.invalidateQueries({ queryKey: ['collaborator'] });
+      }
+    });
+  };
+
   return {
     useCreateCollaboratorMutation,
     useListCollaboratorsQuery,
     useFindCollaboratorQuery,
     useDeleteCollaboratorMutation,
-    useUpdateCollaboratorMutation
+    useUpdateCollaboratorMutation,
+    useChangeAvatarMutation
   };
 };

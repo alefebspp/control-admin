@@ -2,7 +2,8 @@ import { api } from '../api';
 import {
   CreateCollaboratorParams,
   UpdateCollaboratorParams,
-  Collaborator
+  Collaborator,
+  ChangeAvatarParams
 } from './interface';
 
 const createCollaborator = async (params: CreateCollaboratorParams) => {
@@ -64,10 +65,29 @@ const deleteCollaborator = async (collaborator_id?: string) => {
   }
 };
 
+const changeCollaboratorAvatar = async ({
+  form,
+  collaborator_id
+}: ChangeAvatarParams) => {
+  const { data } = await api.patch(
+    `collaborator/avatar/${collaborator_id}`,
+    form,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  );
+  console.log('DATA FROM CHANGE USER AVATAR:', data);
+
+  return data;
+};
+
 export {
   createCollaborator,
   listCollaborators,
   findCollaborator,
   deleteCollaborator,
-  updateCollaborator
+  updateCollaborator,
+  changeCollaboratorAvatar
 };

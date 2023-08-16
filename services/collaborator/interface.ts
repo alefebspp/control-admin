@@ -40,3 +40,8 @@ export interface UpdateCollaboratorParams {
   interval_end?: string;
   shift_end?: string;
 }
+
+export interface ChangeAvatarParams {
+  form: FormData;
+  collaborator_id?: string;
+}
