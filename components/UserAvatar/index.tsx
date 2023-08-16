@@ -93,6 +93,7 @@ const ChangeAvatarButton = () => {
         </Label>
         <Input
           onChange={onInputChange}
+          accept=" .jpg, .jpeg, .png"
           id="picture"
           type="file"
           className="hidden"
