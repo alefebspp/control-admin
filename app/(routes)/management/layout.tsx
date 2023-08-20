@@ -8,8 +8,8 @@ export default function ManagementLayout({
 }) {
   return (
     <NavBarContainer>
-      <div className="w-full h-full flex flex-col justify-between items-center p-4 bg-gray-400">
-        <div className="w-full flex flex-col justify-start p-2 bg-white h-[20%] rounded-lg border border-slate-500">
+      <div className="w-full h-full flex flex-col justify-between items-center p-4 bg-gray-300">
+        <div className="w-full flex flex-col justify-start p-2 bg-white h-[20%] rounded-lg border border-slate-400">
           <h1 className="text-xl font-medium">Gestão</h1>
           <ManagementOptions />
         </div>

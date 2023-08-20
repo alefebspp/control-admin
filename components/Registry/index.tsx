@@ -23,18 +23,22 @@ export const Registry = ({
     return <div>No selected registry</div>;
   }
 
+  console.log(collaborator.surname.split(' '));
+
   return (
     <div
       key={id}
       onClick={selectRegistry}
       className={cn(
-        'w-full h-[10%] flex justify-between bg-white p-2 hover:ring hover:ring-blue-300 cursor-pointer',
-        selected && 'ring ring-blue-300'
+        'w-full h-[12%] flex justify-between bg-white p-2 border border-slate-400 hover:ring hover:ring-gray-400 cursor-pointer',
+        selected && 'ring ring-gray-400'
       )}
     >
-      <div className="w-[15%] h-full flex flex-col items-center justify-between">
+      <div className="w-[15%] h-full flex flex-col items-center justify-center gap-2">
         <UserAvatar source={collaborator.avatar} />
-        <p className="font-medium lg:text-xs xl:text-sm text-center">{`${collaborator.name} ${collaborator.surname}`}</p>
+        <p className="font-medium text-xs text-center">{`${collaborator.name} ${
+          collaborator.surname.split(' ')[0]
+        }`}</p>
       </div>
       <div className="w-[80%] h-full flex flex-col justify-between">
         <div className="w-full h-[40%] flex justify-between bg-slate-900 rounded-lg">

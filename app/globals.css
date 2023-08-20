@@ -1,6 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilização da barra de rolagem */
+::-webkit-scrollbar {
+  width: 10px; /* Largura da barra de rolagem vertical */
+  height: 10px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Estilização do trilho da barra de rolagem */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Cor do trilho */
+  border-radius: 5px;
+}
+
+/* Estilização da alça da barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background-color: #1F2937; /* Cor da alça */
+  border-radius: 5px; /* Borda arredondada da alça */
+}
+
+/* Estilização da alça da barra de rolagem quando passa o mouse por cima */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2D3748; /* Cor da alça ao passar o mouse */
+}
+
+/* Estilização dos cantos da barra de rolagem */
+::-webkit-scrollbar-corner {
+  background-color: transparent; /* Cor do canto */
+}
  
 @layer base {
   :root {

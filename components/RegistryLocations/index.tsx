@@ -4,12 +4,17 @@ import { MapPin, ChevronDown } from 'lucide-react';
 import { HeaderProps, RegistryLocationsProps } from './interface';
 import { cn } from '@/lib/utils';
 import { formatDateToDayMonth } from '@/utils';
+import { Underdog } from 'next/font/google';
 
 export const RegistryLocations = ({ registry }: RegistryLocationsProps) => {
+  if (!registry) {
+    return <NoRegistrySelected />;
+  }
+
   return (
     <div className={cn('w-full h-full flex flex-col')}>
       <Header registry={registry} />
-      {registry ? <Content registry={registry} /> : <NoRegistrySelected />}
+      <Content registry={registry} />
     </div>
   );
 };
@@ -40,12 +45,18 @@ const Header = ({ registry }: HeaderProps) => {
 
 export const NoRegistrySelected = () => {
   return (
-    <div className="bg-white w-full h-full rounded-br-md rounded-bl-md flex justify-center items-center">
-      <div className="w-[50%] h-[50%] flex flex-col items-center">
-        <MapPin className="w-[80%] h-[80%] text-slate-400" />
-        <p className="text-slate-900 font-medium">
-          Nenhum registro selecionado...
-        </p>
+    <div className="w-full h-full relative">
+      <div className="absolute w-full h-full backdrop-blur-sm rounded-md">
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <MapPin className="w-[30%] h-[30%] text-slate-900" />
+          <p className="text-slate-900 font-medium">
+            Nenhum registro selecionado...
+          </p>
+        </div>
+      </div>
+      <div className={cn('w-full h-full flex flex-col')}>
+        <Header />
+        <Content />
       </div>
     </div>
   );

@@ -36,12 +36,12 @@ const Home = () => {
   }
 
   return (
-    <div className="w-full h-full flex justify-between p-4 gap-4 bg-gray-400">
+    <div className="w-full h-full flex justify-between p-4 gap-4 bg-gray-300">
       <div className="w-[50%] h-full flex flex-col gap-4">
-        <div className="w-full h-[10%] flex flex-col justify-between border border-slate-500 bg-white rounded-xl p-2">
+        <div className="w-full h-[10%] flex flex-col justify-between border border-slate-400 bg-white rounded-xl p-2">
           <div className="w-full h-[20%] flex items-center gap-2">
             <Search className="w-4 h-4" />
-            <p className="font-medium">Buscar</p>
+            <p className="font-medium">Buscar por:</p>
           </div>
           <div className="w-full h-[80%] flex items-center justify-start gap-4">
             <SelectComponent
@@ -56,21 +56,23 @@ const Home = () => {
             />
           </div>
         </div>
-        {registries?.map(registry => {
-          return (
-            <Registry
-              setSelectedRegistry={setSelectedRegistry}
-              selectedRegistry={selectedRegistry}
-              registry={registry}
-            />
-          );
-        })}
+        <div className="w-full h-full flex flex-col gap-4 p-2 overflow-y-auto">
+          {registries?.map(registry => {
+            return (
+              <Registry
+                setSelectedRegistry={setSelectedRegistry}
+                selectedRegistry={selectedRegistry}
+                registry={registry}
+              />
+            );
+          })}
+        </div>
       </div>
       <div className="w-[50%] h-full flex flex-col gap-4">
-        <div className="w-full h-[50%] border border-slate-500 rounded-md">
+        <div className="w-full h-[50%] border border-slate-400 rounded-md">
           <RegistryLocations registry={selectedRegistry} />
         </div>
-        <div className="w-full h-[50%] flex flex-col rounded-md bg-white border border-slate-500">
+        <div className="w-full h-[50%] flex flex-col rounded-md bg-white border border-slate-400">
           <Statistics
             selectedRegistry={selectedRegistry}
             chart={

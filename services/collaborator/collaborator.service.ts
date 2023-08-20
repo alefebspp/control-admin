@@ -78,7 +78,6 @@ const changeCollaboratorAvatar = async ({
       }
     }
   );
-  console.log('DATA FROM CHANGE USER AVATAR:', data);
 
   return data;
 };

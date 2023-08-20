@@ -32,9 +32,13 @@ const NavBar = () => {
       <LinkComponent className="bg-slate-200" label="Gestão" href="/management">
         <Users className="lg:w-4 lg:h-4 xl:w-6 xl:h-6" />
       </LinkComponent>
-      <Button onClick={signOut} className="mt-auto">
-        <LogOut className="mr-2 lg:w-4 lg:h-4 xl:w-6 xl:h-6" />
-        <p className="lg:text-sm xl:text-lg">Sair</p>
+      <Button
+        onClick={signOut}
+        variant="outline"
+        className="mt-auto border-gray-400"
+      >
+        <LogOut className="mr-2 w-4 h-4" />
+        <p className="text-sm">Sair</p>
       </Button>
     </div>
   );

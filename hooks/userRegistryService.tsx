@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import {
   listRegistries,
   listCollaboratorStatistics
@@ -13,10 +13,13 @@ const useLisRegistriesQuery = (company_id?: string) => {
   return queryResult;
 };
 
-const useListCollaboratorStatistics = (company_id: string, period: string) => {
+const useListCollaboratorStatistics = (
+  collaborator_id: string,
+  period: string
+) => {
   const queryResult = useQuery({
-    queryFn: () => listCollaboratorStatistics(company_id, period),
-    queryKey: ['statistic']
+    queryFn: () => listCollaboratorStatistics(collaborator_id, period),
+    queryKey: ['statistic', collaborator_id, period]
   });
 
   return queryResult;

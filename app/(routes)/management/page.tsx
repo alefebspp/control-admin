@@ -23,14 +23,14 @@ const Management = () => {
 
   return (
     <div className="w-full h-full flex gap-4 items-center">
-      <div className="w-[50%] h-full flex flex-col gap-4 p-2 bg-white rounded-md border border-slate-500">
+      <div className="w-[50%] h-full flex flex-col gap-4 p-2 bg-white rounded-md border border-slate-400">
         <div className="w-full flex items-end gap-2">
           <UserPlus className="w-10 h-10" />
           <p className="text-lg font-medium">Adicionar colaborador</p>
         </div>
         <CreateCollaboratorForm />
       </div>
-      <div className="w-[50%] h-full flex flex-col gap-4 p-2 bg-white rounded-md border border-slate-500">
+      <div className="w-[50%] h-full flex flex-col gap-4 p-2 bg-white rounded-md border border-slate-400">
         <div className="w-full flex items-end gap-2">
           <Users className="w-10 h-10" />
           <p className="text-lg font-medium">Colaboradores</p>
