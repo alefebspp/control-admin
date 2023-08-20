@@ -1,13 +1,11 @@
 'use client';
 import { createContext, useState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
 import {
   AuthContextInitialValue,
   AuthContextProps,
   LoginRequest,
-  LoginResponse,
   User
 } from './interface';
 import { api } from '@/services/api';

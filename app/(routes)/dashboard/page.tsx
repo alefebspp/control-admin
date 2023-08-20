@@ -36,7 +36,7 @@ const Home = () => {
   }
 
   return (
-    <div className="w-full h-full flex justify-between p-4 gap-4 bg-gray-300">
+    <div className="w-full h-full flex justify-between p-4 gap-4">
       <div className="w-[50%] h-full flex flex-col gap-4">
         <div className="w-full h-[10%] flex flex-col justify-between border border-slate-400 bg-white rounded-xl p-2">
           <div className="w-full h-[20%] flex items-center gap-2">
