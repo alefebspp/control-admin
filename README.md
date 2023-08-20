@@ -1,7 +1,7 @@
 ## Control
 
 ## Proposta da aplicação
-- Essa aplicação é um painel administrativo para fazer a gestão do aplicativo em React Native deste repositório: https://github.com/alefebspp/control-project. A ideial principal da aplicação (site + aplicativo) é gerar uma forma de controle de horários de funcionários de certa empresa. Os funcionários utilizarão o aplicativo para marcar seus horários de entrada, saída e intervalos. Toda marcação de horário irá solicitar ao funcionário sua localização atual. Além disso, o funcionário pode solicitar ajustes em seus horários marcados caso algum problema tenha acontecido.
+- Essa aplicação é um painel administrativo para fazer a gestão do aplicativo em React Native deste repositório: https://github.com/alefebspp/control-project. A ideia principal da aplicação (site + aplicativo) é gerar uma forma de controle de horários de funcionários de certa empresa. Os funcionários utilizarão o aplicativo para marcar seus horários de entrada, saída e intervalos. Toda marcação de horário irá solicitar ao funcionário sua localização atual. Além disso, o funcionário pode solicitar ajustes em seus horários marcados caso algum problema tenha acontecido.
 - Ainda em construção
 
 ## Páginas de login e cadastro:
