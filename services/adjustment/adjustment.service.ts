@@ -1,24 +1,45 @@
 import { api } from '../api';
 import { Adjustment, ValidateAdjustmentProps } from './interface';
 
-const listAdjustments = async (
-  company_id?: string,
-  period?: string
-): Promise<Adjustment[]> => {
+interface ListAdjustmentsOption {
+  company_id?: string;
+  period?: string;
+  collaborator_name?: string;
+  skip?: number;
+}
+
+interface ListAdjustmentsResponse {
+  adjustments: Adjustment[];
+  count: number;
+}
+
+const listAdjustments = async ({
+  company_id,
+  collaborator_name,
+  period,
+  skip
+}: ListAdjustmentsOption) => {
   try {
-    let url: string = '';
+    const queryParams: string[] = [];
+
+    queryParams.push(`skip=${skip}`);
 
     if (company_id) {
-      url = `?companyId=${company_id}`;
+      queryParams.push(`companyId=${company_id}`);
     }
     if (period) {
-      url = `?period=${period}`;
+      queryParams.push(`period=${period}`);
     }
-    if (company_id && period) {
-      url = `?companyId=${company_id}&period=${period}`;
+    if (collaborator_name) {
+      queryParams.push(`collaboratorName=${collaborator_name}`);
     }
 
-    const { data } = await api.get(`requests${url}`);
+    const queryString =
+      queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const { data } = await api.get<ListAdjustmentsResponse>(
+      `requests${queryString}`
+    );
+    console.log('DATA:', data);
 
     return data;
   } catch (error) {

@@ -22,7 +22,7 @@ export const SelectComponent = ({
 
   return (
     <Select defaultValue={defaultValue} onValueChange={handleSelectedOption}>
-      <SelectTrigger className="w-[40%] border-slate-700">
+      <SelectTrigger className="w-[40%] lg:h-[60%] xl:h-[80%] border-slate-700">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>

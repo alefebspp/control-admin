@@ -49,7 +49,7 @@ export const AuthForm = () => {
   }
 
   return (
-    <div className="w-full h-[40%]">
+    <div className="w-full h-[40%] ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSignIn)}

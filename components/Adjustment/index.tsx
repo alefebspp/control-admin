@@ -70,8 +70,8 @@ export const Adjustment = ({
     <div
       onClick={handleSelectAdjustment}
       className={cn(
-        'w-full h-[18%] bg-white flex cursor-pointer border border-slate-400 hover:ring hover:ring-slate-300',
-        activeAdjustment && 'ring-0 hover:ring-0'
+        'w-full h-[18%] bg-white flex cursor-pointer border-b border-slate-400',
+        activeAdjustment && 'text-blue-500'
       )}
     >
       <StatusContainer

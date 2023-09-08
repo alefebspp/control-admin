@@ -7,20 +7,17 @@ import {
 } from '@/components/ui/accordion';
 import { PiClockClockwise, PiClockCountdownFill } from 'react-icons/pi';
 import { AuthForm } from '@/components/AuthForm';
+import { MovingClock } from '@/components/MovingClock';
 
 export default function Login() {
   return (
     <div className="w-full h-[100vh] flex items-center bg-blue-300 p-10 ">
       <div className="w-full lg:h-[80%] xl:h-full bg-white items-center flex p-5 rounded-br-[60px]">
         <div className="xl:w-[30%] lg:w-[40%] h-[80%]  p-14 bg-white flex flex-col justify-between items-start">
-          <div className="w-full gap-2 flex items-center">
-            <PiClockClockwise className="h-8 w-8" />
-            <h1 className="font-bold text-2xl">Control</h1>
-          </div>
-          <div className="w-full h-[10%] flex flex-col justify-between">
+          <MovingClock>
             <h2 className="font-bold lg:text-2xl xl:text-4xl">Entrar</h2>
             <h3 className="lg:text-sm xl:text-lg">Faça login para entrar</h3>
-          </div>
+          </MovingClock>
           <AuthForm />
           <div className="w-full flex gap-[2px]">
             <p>Não tem uma conta?</p>
@@ -29,7 +26,7 @@ export default function Login() {
             </Link>
           </div>
         </div>
-        <div className="w-[70%] h-full bg-mosaic bg-cover flex flex-col justify-between rounded-tl-[60px] rounded-br-[60px]">
+        <div className="w-[70%] h-full bg-mosaic bg-cover bg-center bg-no-repeat flex flex-col justify-between rounded-tl-[60px] rounded-br-[60px]">
           <div className="w-full h-[40%] p-10 flex justify-start items-start">
             <PiClockCountdownFill className="text-white h-12 w-12" />
           </div>

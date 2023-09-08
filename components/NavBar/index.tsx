@@ -22,23 +22,23 @@ const NavBar = () => {
       ) : (
         <UserAvatar
           canUpdate
-          className="w-10 h-10"
+          className="lg:w-[40px] lg:h-[40px] xl:w-[60px] xl:h-[60px]"
           source={collaborator?.avatar}
         />
       )}
-      <LinkComponent className="bg-slate-200" label="Início" href="/dashboard">
+      <LinkComponent label="Início" href="/dashboard">
         <Home className="lg:w-4 lg:h-4 xl:w-6 xl:h-6" />
       </LinkComponent>
-      <LinkComponent className="bg-slate-200" label="Gestão" href="/management">
+      <LinkComponent label="Gestão" href="/management">
         <Users className="lg:w-4 lg:h-4 xl:w-6 xl:h-6" />
       </LinkComponent>
       <Button
         onClick={signOut}
         variant="outline"
-        className="mt-auto border-gray-400"
+        className=" lg:w-full xl:w-[80%] h-[5%] mt-auto border-gray-400"
       >
         <LogOut className="mr-2 w-4 h-4" />
-        <p className="text-sm">Sair</p>
+        <p className="lg:text-xs xl:text-sm">Sair</p>
       </Button>
     </div>
   );

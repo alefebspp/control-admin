@@ -67,6 +67,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   function signOut() {
     setUser(undefined);
     destroyCookie(undefined, '@control-token');
+    destroyCookie(undefined, '@control-server-token');
     router.push('/login');
   }
 
