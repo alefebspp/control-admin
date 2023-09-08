@@ -9,7 +9,7 @@ const ManagementOptions = () => {
         <p className="font-medium">Empresa</p>
         <LinkComponent
           href="/management/company"
-          className="h-[50%] w-[50%] bg-slate-200 justify-center items-center"
+          className="h-[50%] w-[50%] justify-center items-center"
         >
           <Building className="w-8 h-8" />
         </LinkComponent>
@@ -18,7 +18,7 @@ const ManagementOptions = () => {
         <p className="font-medium">Ajustes</p>
         <LinkComponent
           href="/management/adjustments"
-          className="h-[50%] w-[50%] bg-slate-200 justify-center items-center"
+          className="h-[50%] w-[50%] justify-center items-center"
         >
           <Pencil className="w-8 h-8" />
         </LinkComponent>

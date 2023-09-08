@@ -49,9 +49,6 @@ export const NoRegistrySelected = () => {
       <div className="absolute w-full h-full backdrop-blur-sm rounded-md">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <MapPin className="w-[30%] h-[30%] text-slate-900" />
-          <p className="text-slate-900 font-medium">
-            Nenhum registro selecionado...
-          </p>
         </div>
       </div>
       <div className={cn('w-full h-full flex flex-col')}>

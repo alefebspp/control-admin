@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     });
 
     const data = await res.json();
-    cookies().set('@control-token', data.access_token);
+    cookies().set('@control-server-token', data.access_token);
 
     return NextResponse.json(data);
   } catch (error) {

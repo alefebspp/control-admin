@@ -4,13 +4,26 @@ import {
   validateAdjustment
 } from '@/services/adjustment/adjustment.service';
 
-const useListAdjustmentsQuery = (company_id?: string, period?: string) => {
-  const queryResult = useQuery({
-    queryFn: () => listAdjustments(company_id, period),
-    queryKey: ['adjustments', period]
+const useListAdjustmentsQuery = (
+  company_id?: string,
+  period?: string,
+  collaborator_name?: string,
+  skip?: number
+) => {
+  const { data, isLoading } = useQuery({
+    queryFn: () =>
+      listAdjustments({ company_id, period, collaborator_name, skip }),
+    queryKey: ['adjustments', period, collaborator_name, skip]
   });
 
-  return queryResult;
+  const isEmpty = data?.adjustments?.length == 0;
+
+  return {
+    adjustments: data?.adjustments,
+    count: data?.count,
+    isLoading,
+    isEmpty
+  };
 };
 
 const useValidateAdjustmentMutation = () => {

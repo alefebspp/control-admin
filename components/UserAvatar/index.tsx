@@ -82,13 +82,13 @@ const ChangeAvatarButton = () => {
   };
 
   return (
-    <div className="w-[22px] h-[22px] hover:bg-blue-300 bg-slate-300 rounded-full absolute bottom-0 right-0 border-2 border-white">
+    <div className="lg:w-[16px] lg:h-[16px] xl:w-[22px] xl:h-[22px] hover:bg-blue-300 bg-slate-300 rounded-full absolute bottom-0 right-0 border-2 border-white">
       <div className="w-full h-full rounded-full flex justify-center items-center">
         <Label htmlFor="picture">
           {isLoading ? (
-            <Loader2 className="w-[14px] h-[14px] animate-spin" />
+            <Loader2 className="lg:w-[10px] lg:h-[10px] xl:w-[14px] xl:h-[14px] animate-spin" />
           ) : (
-            <RefreshCw className="w-[14px] h-[14px] cursor-pointer" />
+            <RefreshCw className="lg:w-[10px] lg:h-[10px] xl:w-[14px] xl:h-[14px] cursor-pointer" />
           )}
         </Label>
         <Input
