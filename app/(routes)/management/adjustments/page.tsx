@@ -94,7 +94,7 @@ const Adjustments = () => {
       </div>
       <div className="w-[50%] h-full flex flex-col p-2  bg-white rounded-md border border-slate-400">
         <div className="w-full h-[6%]  flex items-end gap-2">
-          <PenLine className="w-10 h-10" />
+          <PenLine className="xl:w-10 lg:w-8 xl:h-10 lg:h-8" />
           <p className="text-lg font-medium">Detalhes</p>
         </div>
         <AdjustmentDetails
