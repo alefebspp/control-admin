@@ -68,38 +68,48 @@ export const AdjustmentDetails = ({
     <div className="w-full h-full p-2">
       <div className="w-full h-[20%] flex flex-col">
         <div className="w-full flex items-end mb-4 mt-2 gap-2">
-          <User className="w-[30px] h-[30px] text-gray-500" />
-          <p className="text-gray-500 font-medium">Colaborador</p>
+          <User className="xl:w-[30px] lg:w-[25px] xl:h-[30px] lg:h-[25px] text-gray-500" />
+          <p className="text-gray-500 font-medium xl:text-md lg:text-sm">
+            Colaborador
+          </p>
         </div>
         <div className="w-full flex gap-2">
           <div className="flex flex-col w-[50%] items-start gap-1.5">
-            <p className="text-xs text-slate-500">Nome</p>
-            <div className="w-full h-10 flex items-center justify-start rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+            <p className="xl:text-xs lg:text-[10px] text-slate-500">Nome</p>
+            <div className="w-full h-10 flex items-center justify-start rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
               {collaborator.name} {collaborator.surname}
             </div>
           </div>
           <div className="w-[50%] flex justify-between">
             <div className="flex flex-col w-[20%] items-start gap-1.5">
-              <p className="text-xs text-slate-500 m-auto">Entrada</p>
-              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+              <p className="xl:text-xs lg:text-[10px] text-slate-500 m-auto">
+                Entrada
+              </p>
+              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
                 {collaborator.shift_start}
               </div>
             </div>
             <div className="flex flex-col w-[20%] items-start gap-1.5">
-              <p className="text-xs text-slate-500 m-auto">I.Intervalo</p>
-              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+              <p className="xl:text-xs lg:text-[10px] text-slate-500 m-auto">
+                I.Intervalo
+              </p>
+              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
                 {collaborator.interval_start}
               </div>
             </div>
             <div className="flex flex-col w-[20%] items-start gap-1.5">
-              <p className="text-xs text-slate-500 m-auto">F.Intervalo</p>
-              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+              <p className="xl:text-xs lg:text-[10px] text-slate-500 m-auto">
+                F.Intervalo
+              </p>
+              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
                 {collaborator.interval_end}
               </div>
             </div>
             <div className="flex flex-col w-[20%] items-start gap-1.5">
-              <p className="text-xs text-slate-500 m-auto">Saída</p>
-              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+              <p className="xl:text-xs lg:text-[10px] text-slate-500 m-auto">
+                Saída
+              </p>
+              <div className="w-full h-10 flex items-center justify-center rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
                 {collaborator.shift_end}
               </div>
             </div>
@@ -108,19 +118,25 @@ export const AdjustmentDetails = ({
       </div>
       <div className="w-full h-[25%] flex flex-col">
         <div className="w-full flex items-end my-4 gap-2">
-          <MapPin className="w-[30px] h-[30px] text-gray-500" />
-          <p className="text-gray-500 font-medium">Locais do ajuste</p>
+          <MapPin className="xl:w-[30px] lg:w-[25px] xl:h-[30px] lg:h-[25px] text-gray-500" />
+          <p className="text-gray-500 font-medium xl:text-md lg:text-sm">
+            Locais do ajuste
+          </p>
         </div>
         <div className="w-full flex gap-2">
           <div className="flex flex-col w-[50%] items-start gap-1.5">
-            <p className="text-xs text-slate-500">Local anterior</p>
-            <div className="w-full h-12 rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+            <p className="xl:text-xs lg:text-[10px] text-slate-500">
+              Local anterior
+            </p>
+            <div className="w-full h-12 rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
               {registry_location}
             </div>
           </div>
           <div className="flex flex-col w-[50%] items-start gap-1.5">
-            <p className="text-xs text-slate-500">Novo local</p>
-            <div className="w-full h-12 rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+            <p className="xl:text-xs lg:text-[10px] text-slate-500">
+              Novo local
+            </p>
+            <div className="w-full h-12 rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
               {new_location}
             </div>
           </div>
@@ -128,22 +144,28 @@ export const AdjustmentDetails = ({
       </div>
       <div className="w-full h-[20%] flex flex-col">
         <div className="w-full flex items-end my-4 gap-2">
-          <MessageCircle className="w-[30px] h-[30px] text-gray-500" />
-          <p className="text-gray-500 font-medium">Motivação</p>
+          <MessageCircle className="xl:w-[30px] lg:w-[25px] xl:h-[30px] lg:h-[25px] text-gray-500" />
+          <p className="text-gray-500 font-medium xl:text-md lg:text-sm">
+            Motivação
+          </p>
         </div>
         <div className="w-full flex gap-2">
-          <div className="w-full h-14 rounded-md p-2 bg-slate-200 text-slate-500 font-medium text-xs">
+          <div className="w-full h-14 rounded-md p-2 bg-slate-200 text-slate-500 font-medium xl:text-xs lg:text-[10px]">
             {reason}
           </div>
         </div>
       </div>
       <div className="w-full h-[35%] flex flex-col">
         <div className="w-full flex items-end my-4 gap-2">
-          <CheckCircle className="w-[30px] h-[30px] text-gray-500" />
+          <CheckCircle className="xl:w-[30px] lg:w-[25px] xl:h-[30px] lg:h-[25px] text-gray-500" />
           {status == 'PENDING' ? (
-            <p className="text-gray-500 font-medium">Avalie o ajuste</p>
+            <p className="text-gray-500 font-medium xl:text-md lg:text-sm">
+              Avalie o ajuste
+            </p>
           ) : (
-            <p className="text-gray-500 font-medium">Avaliado por:</p>
+            <p className="text-gray-500 font-medium xl:text-md lg:text-sm">
+              Avaliado por:
+            </p>
           )}
         </div>
         <div
@@ -174,10 +196,10 @@ export const AdjustmentDetails = ({
           ) : (
             <div className="w-full h-[80%] rounded-full bg-slate-200 flex items-center justify-start gap-2">
               <UserAvatar
-                className="w-16 h-16 ml-6"
+                className="xl:w-16 lg:w-10 xl:h-16 lg:h-10 ml-6"
                 source={adjustment_reviewer?.avatar}
               />
-              <p className="text-slate-500 text-lg font-medium">
+              <p className="text-slate-500 xl:text-lg lg:text-sm font-medium">
                 {adjustment_reviewer?.name} {adjustment_reviewer?.surname}
               </p>
             </div>

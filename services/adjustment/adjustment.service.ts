@@ -39,7 +39,6 @@ const listAdjustments = async ({
     const { data } = await api.get<ListAdjustmentsResponse>(
       `requests${queryString}`
     );
-    console.log('DATA:', data);
 
     return data;
   } catch (error) {

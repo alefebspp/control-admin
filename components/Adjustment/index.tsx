@@ -70,7 +70,7 @@ export const Adjustment = ({
     <div
       onClick={handleSelectAdjustment}
       className={cn(
-        'w-full h-[18%] bg-white flex cursor-pointer border-b border-slate-400',
+        'w-full h-[100px] bg-white flex cursor-pointer border-b border-slate-400 text-slate-600 hover:text-blue-500',
         activeAdjustment && 'text-blue-500'
       )}
     >
@@ -81,7 +81,7 @@ export const Adjustment = ({
       />
       <div className="w-[20%] h-full flex flex-col p-2">
         <div className="w-full h-[20%] flex justify-center items-center">
-          <p className="text-sm">Solicitante</p>
+          <p className="xl:text-sm lg:text-xs">Solicitante</p>
         </div>
         <div className="w-full h-[80%] flex flex-col justify-center items-center gap-2">
           <UserAvatar className="w-8 h-8" source={collaborator.avatar} />
@@ -90,30 +90,30 @@ export const Adjustment = ({
       </div>
       <div className="w-[20%] h-full flex flex-col p-2">
         <div className="w-full h-[20%] flex justify-center items-center">
-          <p className="text-sm">Data do registro</p>
+          <p className="xl:text-sm lg:text-xs">Data</p>
         </div>
         <div className="w-full h-[80%] flex flex-col justify-center items-center gap-2">
-          <p className="text-sm font-medium">
+          <p className="xl:text-sm lg:text-xs font-medium">
             {formatDateToDayMonth(registry.date)}
           </p>
         </div>
       </div>
       <div className="w-[20%] h-full flex flex-col p-2">
         <div className="w-full h-[20%] flex justify-center items-center">
-          <p className="text-sm">Correção em</p>
+          <p className="xl:text-sm lg:text-xs">Correção</p>
         </div>
         <div className="w-full h-[80%] flex flex-col justify-center items-center gap-2">
-          <p className="text-sm font-medium">
+          <p className="xl:text-sm lg:text-xs font-medium">
             {convertRegistryType(registry_type)}
           </p>
         </div>
       </div>
       <div className="w-[25%] h-full flex flex-col p-2">
         <div className="w-full h-[20%] flex justify-center items-center">
-          <p className="text-sm">Anterior / Novo</p>
+          <p className="xl:text-sm lg:text-xs">Anterior / Novo</p>
         </div>
         <div className="w-full h-[80%] flex flex-col justify-center items-center gap-2">
-          <p className="text-sm font-medium">
+          <p className="xl:text-sm lg:text-xs font-medium">
             {`${previous_value ?? '--'} / ${new_value}`}
           </p>
         </div>
@@ -132,7 +132,7 @@ const StatusContainer = ({
   activeAdjustment: boolean;
 }) => {
   const statusLabel = convertStatusLabel(status);
-  const iconColor = activeAdjustment ? 'white' : 'black';
+  const iconColor = activeAdjustment ? 'white' : '#3a4251';
 
   const defineStatusIcon = (status: string | undefined) => {
     switch (status) {
@@ -155,7 +155,7 @@ const StatusContainer = ({
       {defineStatusIcon(status)}
       <p
         className={cn(
-          'text-sm font-medium',
+          'xl:text-sm lg:text-[10px] font-medium',
           statusColors.text,
           activeAdjustment && 'text-white'
         )}
