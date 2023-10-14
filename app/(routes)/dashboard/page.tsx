@@ -1,57 +1,59 @@
-'use client';
-import { ChangeEvent, useState } from 'react';
-import { Loader2, Search } from 'lucide-react';
+'use client'
+import { ChangeEvent, useState } from 'react'
+import { Loader2, Search } from 'lucide-react'
 
-import { Registry } from '@/components/Registry';
-import { Input } from '@/components/ui/input';
-import { SelectComponent } from '@/components/Select';
-import { RegistryLocations } from '@/components/RegistryLocations';
-import { Chart } from '@/components/Chart';
+import { Registry } from '@/components/Registry'
+import { Input } from '@/components/ui/input'
+import { SelectComponent } from '@/components/Select'
+import { RegistryLocations } from '@/components/RegistryLocations'
+import { Chart } from '@/components/Chart'
+import { Statistics } from '@/components/Statistics'
+import { Pagination } from '@/components/Pagination'
 
-import { months } from '@/utils';
-import { useLisRegistriesQuery } from '@/hooks/userRegistryService';
-import { useAuthContext } from '@/context/AuthContext';
-import { Registry as RegistryInterface } from '@/services/registry/interface';
-import { Statistics } from '@/components/Statistics';
-import { Pagination } from '@/components/Pagination';
+import { months } from '@/utils'
+import { useLisRegistriesQuery } from '@/hooks/userRegistryService'
+import { useAuthContext } from '@/context/AuthContext'
+import { Registry as RegistryInterface } from '@/services/registry/interface'
 
 const Home = () => {
-  const currentDate = new Date();
+  const currentDate = new Date()
   const [selectedMonth, setSelectedMonth] = useState<string | undefined>(
-    `0${currentDate.getMonth() + 1}-01`
-  );
+    currentDate.getMonth() >= 9
+      ? `${currentDate.getMonth() + 1}-01`
+      : `0${currentDate.getMonth() + 1}-01`
+  )
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
     null
-  );
-  const [collaboratorName, setCollaboratorName] = useState<string>('');
+  )
+  const [collaboratorName, setCollaboratorName] = useState<string>('')
   const [selectedRegistry, setSelectedRegistry] = useState<
     RegistryInterface | undefined
-  >();
-  const [skipParam, setSkipParam] = useState<number>(0);
-  const { user } = useAuthContext();
+  >()
+  const [skipParam, setSkipParam] = useState<number>(0)
+  const { user } = useAuthContext()
 
-  const periodFilter = `${currentDate.getFullYear()}-${selectedMonth}`;
+  const periodFilter = `${currentDate.getFullYear()}-${selectedMonth}`
 
   const { registries, count, isLoading, isEmpty } = useLisRegistriesQuery(
     user?.user_company,
     periodFilter,
     collaboratorName,
     skipParam
-  );
+  )
 
   const handleCollaboratorNameFilter = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
     if (typingTimeout) {
-      clearTimeout(typingTimeout);
+      clearTimeout(typingTimeout)
     }
 
     setTypingTimeout(
       setTimeout(() => {
-        setCollaboratorName(event.target.value);
+        setCollaboratorName(event.target.value)
       }, 1000)
-    );
-  };
+    )
+  }
 
   return (
     <div className="w-full h-full flex justify-between p-4 gap-4">
@@ -88,7 +90,7 @@ const Home = () => {
                     selectedRegistry={selectedRegistry}
                     registry={registry}
                   />
-                );
+                )
               })}
             </div>
           </div>
@@ -112,7 +114,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

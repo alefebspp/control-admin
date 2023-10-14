@@ -1,9 +1,9 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { UserAvatar } from '../UserAvatar';
-import { RegistryProps } from './interface';
+'use client'
+import { cn } from '@/lib/utils'
+import { UserAvatar } from '../UserAvatar'
+import { RegistryProps } from './interface'
 
-import { formatDateToDayMonth } from '@/utils';
+import { formatDateToDayMonth } from '@/utils'
 
 export const Registry = ({
   registry,
@@ -11,16 +11,16 @@ export const Registry = ({
   setSelectedRegistry
 }: RegistryProps) => {
   const { id, collaborator, start, interval_start, interval_end, end, date } =
-    registry;
+    registry
 
-  const selected = id == selectedRegistry?.id;
+  const selected = id == selectedRegistry?.id
 
   const selectRegistry = () => {
-    setSelectedRegistry(registry);
-  };
+    setSelectedRegistry(registry)
+  }
 
   if (!selectRegistry) {
-    return <div>No selected registry</div>;
+    return <div>No selected registry</div>
   }
 
   return (
@@ -87,5 +87,5 @@ export const Registry = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

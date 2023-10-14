@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import {
   Bar,
   BarChart,
@@ -8,45 +8,51 @@ import {
   XAxis,
   YAxis,
   ResponsiveContainer
-} from 'recharts';
-import { BarChart4, MapPin } from 'lucide-react';
+} from 'recharts'
+import { BarChart4, MapPin } from 'lucide-react'
 
-import { ChartSkeleton } from '@/layout/skeletons/dashboard';
-import { useListCollaboratorStatistics } from '@/hooks/userRegistryService';
+import { ChartSkeleton } from '@/layout/skeletons/dashboard'
+import { useListCollaboratorStatistics } from '@/hooks/userRegistryService'
+import { useGetCollaboratorHourRecords } from '@/hooks/useHourRecordService'
 
-import { ChartProps } from './interface';
-import { cn } from '@/lib/utils';
+import { ChartProps } from './interface'
+import { cn } from '@/lib/utils'
 
 export const Chart = ({ month, collaborator_id }: ChartProps) => {
   if (!collaborator_id) {
-    return <NoRegistrySelected />;
+    return <NoRegistrySelected />
   }
 
-  const currentDate = new Date();
+  const currentDate = new Date()
 
-  const { data: statistics, isLoading } = useListCollaboratorStatistics(
+  const { data: hourRecord, isLoading } = useGetCollaboratorHourRecords(
     collaborator_id,
     `${currentDate.getFullYear()}-${month}`
-  );
+  )
 
-  const totalAditionalHours = statistics?.aditionalHours.value ?? 0;
-  const totalPendingHours = statistics?.pendingHours.value ?? 0;
-  const monthLabel = statistics?.monthLabel;
+  const totalAditionalHours = parseFloat(
+    hourRecord?.additional.replace(':', '.') || ''
+  )
+  const totalPendingHours = parseFloat(
+    hourRecord?.pending.replace(':', '.') || ''
+  )
+
+  console.log(totalAditionalHours)
 
   const data = [
     {
-      name: monthLabel,
+      name: hourRecord?.monthLabel,
       uv: totalPendingHours,
       pv: totalAditionalHours,
       amt:
-        totalAditionalHours > totalPendingHours
-          ? totalAditionalHours
-          : totalPendingHours
+        hourRecord?.totalType == 'additional'
+          ? hourRecord.additional
+          : hourRecord?.pending
     }
-  ];
+  ]
 
   if (isLoading) {
-    return <ChartSkeleton loadingApp={false} />;
+    return <ChartSkeleton loadingApp={false} />
   }
 
   return (
@@ -61,8 +67,8 @@ export const Chart = ({ month, collaborator_id }: ChartProps) => {
         <Bar barSize={40} dataKey="uv" name="Horas pendentes" fill="#880808" />
       </BarChart>
     </ResponsiveContainer>
-  );
-};
+  )
+}
 
 export const NoRegistrySelected = () => {
   return (
@@ -93,5 +99,5 @@ export const NoRegistrySelected = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
