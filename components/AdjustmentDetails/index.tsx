@@ -25,13 +25,17 @@ export const AdjustmentDetails = ({
   selectedAdjustment,
   setSelectedAdjustment
 }: AdjustmentDetailsProps) => {
-  if (!selectedAdjustment) {
-    return <NoAdjustmentSelected />
-  }
-  const [newStatus, setNewStatus] = useState<string>('ACCEPTED')
+  const [newStatus, setNewStatus] = useState<string | undefined>()
   const { toast } = useToast()
 
   const { user } = useAuthContext()
+
+  const { mutateAsync: validateAdjustment, isLoading } =
+    useValidateAdjustmentMutation()
+
+  if (!selectedAdjustment) {
+    return <NoAdjustmentSelected />
+  }
 
   const {
     collaborator,
@@ -42,9 +46,6 @@ export const AdjustmentDetails = ({
     status,
     adjustment_reviewer
   } = selectedAdjustment
-
-  const { mutateAsync: validateAdjustment, isLoading } =
-    useValidateAdjustmentMutation()
 
   const handleValidateAdjustment = async (new_status: string) => {
     try {
