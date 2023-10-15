@@ -34,18 +34,8 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
 
   async function signIn({ email, password }: LoginRequest) {
     try {
-      const response = await fetch(
-        `https://control-admin-5lsrnf61v-alefebspp.vercel.app/api/signIn`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, password })
-        }
-      )
-
-      const data = await response.json()
+      const { data } = await api.post('auth/login', { email, password })
+      console.log('DATA:', data)
 
       if (data.statusCode == 404) {
         toast({
@@ -70,7 +60,6 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   function signOut() {
     setUser(undefined)
     destroyCookie(undefined, '@control-token')
-    destroyCookie(undefined, '@control-server-token')
     router.push('/login')
   }
 
