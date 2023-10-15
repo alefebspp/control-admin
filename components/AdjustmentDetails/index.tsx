@@ -28,7 +28,7 @@ export const AdjustmentDetails = ({
   if (!selectedAdjustment) {
     return <NoAdjustmentSelected />
   }
-  const [newStatus, setNewStatus] = useState<string | undefined>('ACCEPTED')
+  const [newStatus, setNewStatus] = useState<string>('ACCEPTED')
   const { toast } = useToast()
 
   const { user } = useAuthContext()
