@@ -9,24 +9,19 @@ import {
   YAxis,
   ResponsiveContainer
 } from 'recharts'
-import { BarChart4, MapPin } from 'lucide-react'
+import { BarChart4 } from 'lucide-react'
 
 import { ChartSkeleton } from '@/layout/skeletons/dashboard'
-import { useListCollaboratorStatistics } from '@/hooks/userRegistryService'
 import { useGetCollaboratorHourRecords } from '@/hooks/useHourRecordService'
 
 import { ChartProps } from './interface'
 import { cn } from '@/lib/utils'
 
 export const Chart = ({ month, collaborator_id }: ChartProps) => {
-  if (!collaborator_id) {
-    return <NoRegistrySelected />
-  }
-
   const currentDate = new Date()
 
   const { data: hourRecord, isLoading } = useGetCollaboratorHourRecords(
-    collaborator_id,
+    collaborator_id || '',
     `${currentDate.getFullYear()}-${month}`
   )
 
@@ -36,8 +31,6 @@ export const Chart = ({ month, collaborator_id }: ChartProps) => {
   const totalPendingHours = parseFloat(
     hourRecord?.pending.replace(':', '.') || ''
   )
-
-  console.log(totalAditionalHours)
 
   const data = [
     {
@@ -53,6 +46,10 @@ export const Chart = ({ month, collaborator_id }: ChartProps) => {
 
   if (isLoading) {
     return <ChartSkeleton loadingApp={false} />
+  }
+
+  if (!collaborator_id) {
+    return <NoRegistrySelected />
   }
 
   return (
