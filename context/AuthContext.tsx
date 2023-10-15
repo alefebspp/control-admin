@@ -35,7 +35,6 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   async function signIn({ email, password }: LoginRequest) {
     try {
       const { data } = await api.post('auth/login', { email, password })
-      console.log('DATA:', data)
 
       if (data.statusCode == 404) {
         toast({

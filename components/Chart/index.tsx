@@ -21,7 +21,7 @@ export const Chart = ({ month, collaborator_id }: ChartProps) => {
   const currentDate = new Date()
 
   const { data: hourRecord, isLoading } = useGetCollaboratorHourRecords(
-    collaborator_id || '',
+    collaborator_id,
     `${currentDate.getFullYear()}-${month}`
   )
 
