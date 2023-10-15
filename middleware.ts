@@ -1,21 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get('@control-token');
+  const token = req.cookies.get('@control-token')
+  const response = NextResponse.next()
+
+  if (req.nextUrl.pathname.startsWith('/api')) {
+    response.headers.append('Access-Control-Allow-Origin', '*')
+  }
 
   if (req.nextUrl.pathname.startsWith('/login') && !token) {
-    return;
+    return
   }
 
   if (token && req.url.includes('/login')) {
-    return NextResponse.redirect(new URL('/dashboard', req.url));
+    return NextResponse.redirect(new URL('/dashboard', req.url))
   }
 
   if (!token) {
-    return NextResponse.redirect(new URL('/login', req.url));
+    return NextResponse.redirect(new URL('/login', req.url))
   }
+
+  return response
 }
 
 export const config = {
   matcher: ['/login', '/dashboard', '/management']
-};
+}
