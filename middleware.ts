@@ -6,6 +6,7 @@ export async function middleware(req: NextRequest) {
 
   if (req.nextUrl.pathname.startsWith('/api')) {
     response.headers.append('Access-Control-Allow-Origin', '*')
+    return response
   }
 
   if (req.nextUrl.pathname.startsWith('/login') && !token) {
@@ -19,8 +20,6 @@ export async function middleware(req: NextRequest) {
   if (!token) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
-
-  return response
 }
 
 export const config = {
