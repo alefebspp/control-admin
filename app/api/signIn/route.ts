@@ -1,25 +1,26 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await request.json()
 
-    const { email, password } = body;
+    const { email, password } = body
 
     const res = await fetch(`${process.env.API_SERVER}auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password })
-    });
+      body: JSON.stringify({ email, password }),
+      cache: 'no-store'
+    })
 
-    const data = await res.json();
-    cookies().set('@control-server-token', data.access_token);
+    const data = await res.json()
+    cookies().set('@control-server-token', data.access_token)
 
-    return NextResponse.json(data);
+    return NextResponse.json(data)
   } catch (error) {
-    throw error;
+    throw error
   }
 }
