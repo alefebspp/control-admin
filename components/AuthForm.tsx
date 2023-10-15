@@ -36,7 +36,7 @@ export const AuthForm = () => {
       setIsLoading(true)
       await signIn({ email, password })
     } catch (error) {
-      console.log(error)
+      console.log('ERROR:', error)
       const isAppError = error instanceof AppError
       const title = isAppError ? error.message : 'Não foi possível fazer login'
       toast({
