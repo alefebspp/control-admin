@@ -1,50 +1,51 @@
-'use client';
-import { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+'use client'
+import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from './ui/button';
-import { SignInSchema } from '@/lib/schemas';
-import { useToast } from '@/components/ui/use-toast';
-import { AppError } from '@/lib/AppError';
-import { useAuthContext } from '@/context/AuthContext';
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from './ui/button'
+import { SignInSchema } from '@/lib/schemas'
+import { useToast } from '@/components/ui/use-toast'
+import { AppError } from '@/lib/AppError'
+import { useAuthContext } from '@/context/AuthContext'
 
 export const AuthForm = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const { signIn } = useAuthContext();
+  const { signIn } = useAuthContext()
 
-  const { toast } = useToast();
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema)
-  });
+  })
 
   async function handleSignIn({
     email,
     password
   }: z.infer<typeof SignInSchema>) {
     try {
-      setIsLoading(true);
-      await signIn({ email, password });
+      setIsLoading(true)
+      await signIn({ email, password })
     } catch (error) {
-      const isAppError = error instanceof AppError;
-      const title = isAppError ? error.message : 'Não foi possível fazer login';
+      console.log(error)
+      const isAppError = error instanceof AppError
+      const title = isAppError ? error.message : 'Não foi possível fazer login'
       toast({
         title: title,
         description: 'Por favor, tente novamente.',
         variant: 'destructive'
-      });
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
   }
 
@@ -90,5 +91,5 @@ export const AuthForm = () => {
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
