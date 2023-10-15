@@ -1,56 +1,56 @@
-'use client';
+'use client'
 
-import { Search, PenLine, Loader2 } from 'lucide-react';
-import { ChangeEvent, useState } from 'react';
+import { Search, PenLine, Loader2 } from 'lucide-react'
+import { ChangeEvent, useState } from 'react'
 
-import { SelectComponent } from '@/components/Select';
-import { Input } from '@/components/ui/input';
-import { Adjustment } from '@/components/Adjustment';
+import { SelectComponent } from '@/components/Select'
+import { Input } from '@/components/ui/input'
+import { Adjustment } from '@/components/Adjustment'
 
-import { months } from '@/utils';
-import { useListAdjustmentsQuery } from '@/hooks/useAdjustmentService';
-import { useAuthContext } from '@/context/AuthContext';
-import { AdjustmentDetails } from '@/components/AdjustmentDetails';
-import { Adjustment as AdjustmentInterface } from '@/services/adjustment/interface';
-import { Pagination } from '@/components/Pagination';
+import { months } from '@/utils'
+import { useListAdjustmentsQuery } from '@/hooks/useAdjustmentService'
+import { useAuthContext } from '@/context/AuthContext'
+import { AdjustmentDetails } from '@/components/AdjustmentDetails'
+import { Adjustment as AdjustmentInterface } from '@/services/adjustment/interface'
+import { Pagination } from '@/components/Pagination'
 
 const Adjustments = () => {
-  const currentDate = new Date();
+  const currentDate = new Date()
   const [selectedMonth, setSelectedMonth] = useState<string | undefined>(
     `0${currentDate.getMonth() + 1}-01`
-  );
+  )
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
     null
-  );
-  const [collaboratorName, setCollaboratorName] = useState<string>('');
+  )
+  const [collaboratorName, setCollaboratorName] = useState<string>('')
   const [selectedAdjustment, setSelectedAdjustment] = useState<
     AdjustmentInterface | undefined
-  >();
-  const [skipParam, setSkipParam] = useState<number>(0);
+  >()
+  const [skipParam, setSkipParam] = useState<number>(0)
 
-  const periodFilter = `${currentDate.getFullYear()}-${selectedMonth}`;
+  const periodFilter = `${currentDate.getFullYear()}-${selectedMonth}`
 
-  const { user } = useAuthContext();
+  const { user } = useAuthContext()
   const { adjustments, isLoading, count, isEmpty } = useListAdjustmentsQuery(
     user?.user_company,
     periodFilter,
     collaboratorName,
     skipParam
-  );
+  )
 
   const handleCollaboratorNameFilter = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
     if (typingTimeout) {
-      clearTimeout(typingTimeout);
+      clearTimeout(typingTimeout)
     }
 
     setTypingTimeout(
       setTimeout(() => {
-        setCollaboratorName(event.target.value);
+        setCollaboratorName(event.target.value)
       }, 1000)
-    );
-  };
+    )
+  }
 
   return (
     <div className="w-full h-full flex justify-between p-4 gap-4">
@@ -82,11 +82,12 @@ const Adjustments = () => {
             {adjustments?.map(adjustment => {
               return (
                 <Adjustment
+                  key={adjustment.id}
                   selectedAdjustment={selectedAdjustment}
                   setSelectedAdjustment={setSelectedAdjustment}
                   adjustment={adjustment}
                 />
-              );
+              )
             })}
           </div>
         )}
@@ -103,7 +104,7 @@ const Adjustments = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Adjustments;
+export default Adjustments

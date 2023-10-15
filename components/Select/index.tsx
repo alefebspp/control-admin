@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   Select,
@@ -6,8 +6,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue
-} from '@/components/ui/select';
-import { SelectComponentProps } from './interface';
+} from '@/components/ui/select'
+import { SelectComponentProps } from './interface'
 
 export const SelectComponent = ({
   options,
@@ -17,8 +17,8 @@ export const SelectComponent = ({
   defaultValue
 }: SelectComponentProps) => {
   const handleSelectedOption = (value: string) => {
-    setSelectedOption(value);
-  };
+    setSelectedOption(value)
+  }
 
   return (
     <Select defaultValue={defaultValue} onValueChange={handleSelectedOption}>
@@ -26,10 +26,14 @@ export const SelectComponent = ({
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
-        {options.map(({ label, value }) => {
-          return <SelectItem value={value}>{label}</SelectItem>;
+        {options.map(({ label, value }, index) => {
+          return (
+            <SelectItem key={index} value={value}>
+              {label}
+            </SelectItem>
+          )
         })}
       </SelectContent>
     </Select>
-  );
-};
+  )
+}

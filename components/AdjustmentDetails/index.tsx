@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   Check,
   CheckCircle,
@@ -9,29 +9,29 @@ import {
   Pencil,
   User,
   X
-} from 'lucide-react';
+} from 'lucide-react'
 
-import { useValidateAdjustmentMutation } from '@/hooks/useAdjustmentService';
-import { AdjustmentDetailsProps } from './interface';
-import { Button } from '../ui/button';
-import { useAuthContext } from '@/context/AuthContext';
-import { useToast } from '../ui/use-toast';
-import { UserAvatar } from '../UserAvatar';
-import { cn } from '@/lib/utils';
-import { Adjustment } from '@/services/adjustment/interface';
-import { adjustmentMock } from '@/utils/mocks';
+import { useValidateAdjustmentMutation } from '@/hooks/useAdjustmentService'
+import { AdjustmentDetailsProps } from './interface'
+import { Button } from '../ui/button'
+import { useAuthContext } from '@/context/AuthContext'
+import { useToast } from '../ui/use-toast'
+import { UserAvatar } from '../UserAvatar'
+import { cn } from '@/lib/utils'
+import { Adjustment } from '@/services/adjustment/interface'
+import { adjustmentMock } from '@/utils/mocks'
 
 export const AdjustmentDetails = ({
   selectedAdjustment,
   setSelectedAdjustment
 }: AdjustmentDetailsProps) => {
   if (!selectedAdjustment) {
-    return <NoAdjustmentSelected />;
+    return <NoAdjustmentSelected />
   }
-  const [newStatus, setNewStatus] = useState<string | undefined>();
-  const { toast } = useToast();
+  const [newStatus, setNewStatus] = useState<string | undefined>('ACCEPTED')
+  const { toast } = useToast()
 
-  const { user } = useAuthContext();
+  const { user } = useAuthContext()
 
   const {
     collaborator,
@@ -41,28 +41,28 @@ export const AdjustmentDetails = ({
     id,
     status,
     adjustment_reviewer
-  } = selectedAdjustment;
+  } = selectedAdjustment
 
   const { mutateAsync: validateAdjustment, isLoading } =
-    useValidateAdjustmentMutation();
+    useValidateAdjustmentMutation()
 
   const handleValidateAdjustment = async (new_status: string) => {
     try {
-      setNewStatus(new_status);
+      setNewStatus(new_status)
       const adjustment = await validateAdjustment({
         adjustment_id: id,
         validate_data: { reviewer: user?.user_id, new_status }
-      });
+      })
       if (setSelectedAdjustment) {
-        setSelectedAdjustment(adjustment);
+        setSelectedAdjustment(adjustment)
       }
     } catch (error) {
       toast({
         title: 'Impossível avaliar ajuste.Tente novamente',
         variant: 'destructive'
-      });
+      })
     }
-  };
+  }
 
   return (
     <div className="w-full h-full p-2">
@@ -207,11 +207,11 @@ export const AdjustmentDetails = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const NoAdjustmentSelected = () => {
-  const selectedAdjustmentMock: Adjustment = adjustmentMock;
+  const selectedAdjustmentMock: Adjustment = adjustmentMock
   return (
     <div className="w-full h-full relative">
       <div className="absolute w-full h-full backdrop-blur-sm rounded-md">
@@ -226,5 +226,5 @@ const NoAdjustmentSelected = () => {
         <AdjustmentDetails selectedAdjustment={selectedAdjustmentMock} />
       </div>
     </div>
-  );
-};
+  )
+}

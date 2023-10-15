@@ -86,6 +86,7 @@ const Home = () => {
               {registries?.map(registry => {
                 return (
                   <Registry
+                    key={registry.id}
                     setSelectedRegistry={setSelectedRegistry}
                     selectedRegistry={selectedRegistry}
                     registry={registry}
